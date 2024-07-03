@@ -1,0 +1,359 @@
+INFO - 07/03/24 14:01:48 - 0:00:00 - ============ Initialized logger ============
+INFO - 07/03/24 14:01:48 - 0:00:00 - activation: ReLU
+                                     atom_messages: False
+                                     batch_size: 256
+                                     bias: False
+                                     checkpoint_dir: None
+                                     checkpoint_path: ../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt
+                                     checkpoint_paths: ['../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt']
+                                     command: python model_train.py --data_path '../examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt' --exp_id "finetune"
+                                     config_path: None
+                                     crossval_index_dir: None
+                                     crossval_index_file: None
+                                     cuda: True
+                                     data_path: ../examples/chaperone_sample_data.csv
+                                     dataset_type: classification
+                                     depth: 3
+                                     dropout: 0.0
+                                     dump_path: dumped
+                                     encoder_name: CMPNN
+                                     ensemble_size: 1
+                                     epochs: 40
+                                     exp_id: finetune
+                                     exp_name: finetune
+                                     features_generator: None
+                                     features_only: False
+                                     features_path: None
+                                     features_scaling: True
+                                     ffn_hidden_size: 300
+                                     ffn_num_layers: 5
+                                     final_lr: 0.0001
+                                     folds_file: None
+                                     gpu: 0
+                                     hidden_size: 300
+                                     init_lr: 0.0001
+                                     log_frequency: 10
+                                     max_data_size: None
+                                     max_lr: 0.001
+                                     metric: accuracy
+                                     minimize_score: False
+                                     multiclass_num_classes: 3
+                                     no_cache: False
+                                     num_lrs: 1
+                                     num_runs: 1
+                                     quiet: False
+                                     save_dir: ./ckpt
+                                     save_smiles_splits: False
+                                     seed: 1
+                                     separate_test_features_path: None
+                                     separate_test_path: None
+                                     separate_val_features_path: None
+                                     separate_val_path: None
+                                     show_individual_scores: False
+                                     split_sizes: [0.8, 0.1, 0.1]
+                                     split_type: scaffold_balanced
+                                     step: functional_prompt
+                                     temperature: 0.1
+                                     test: False
+                                     test_fold_index: None
+                                     transfer_learning: No
+                                     undirected: False
+                                     use_compound_names: False
+                                     use_input_features: None
+                                     val_fold_index: None
+                                     warmup_epochs: 2.0
+INFO - 07/03/24 14:01:48 - 0:00:00 - ========================
+                                     # Git Version: 6dce5de #
+                                     ========================
+INFO - 07/03/24 14:01:48 - 0:00:00 - The experiment will be stored in dumped/0703-finetune/finetune
+                                     
+INFO - 07/03/24 14:01:48 - 0:00:00 - Running command: python model_train.py --data_path '../examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt'
+
+INFO - 07/03/24 14:02:13 - 0:00:00 - ============ Initialized logger ============
+INFO - 07/03/24 14:02:13 - 0:00:00 - activation: ReLU
+                                     atom_messages: False
+                                     batch_size: 256
+                                     bias: False
+                                     checkpoint_dir: None
+                                     checkpoint_path: ../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt
+                                     checkpoint_paths: ['../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt']
+                                     command: python model_train.py --data_path './examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt' --exp_id "finetune"
+                                     config_path: None
+                                     crossval_index_dir: None
+                                     crossval_index_file: None
+                                     cuda: True
+                                     data_path: ./examples/chaperone_sample_data.csv
+                                     dataset_type: classification
+                                     depth: 3
+                                     dropout: 0.0
+                                     dump_path: dumped
+                                     encoder_name: CMPNN
+                                     ensemble_size: 1
+                                     epochs: 40
+                                     exp_id: finetune
+                                     exp_name: finetune
+                                     features_generator: None
+                                     features_only: False
+                                     features_path: None
+                                     features_scaling: True
+                                     ffn_hidden_size: 300
+                                     ffn_num_layers: 5
+                                     final_lr: 0.0001
+                                     folds_file: None
+                                     gpu: 0
+                                     hidden_size: 300
+                                     init_lr: 0.0001
+                                     log_frequency: 10
+                                     max_data_size: None
+                                     max_lr: 0.001
+                                     metric: accuracy
+                                     minimize_score: False
+                                     multiclass_num_classes: 3
+                                     no_cache: False
+                                     num_lrs: 1
+                                     num_runs: 1
+                                     quiet: False
+                                     save_dir: ./ckpt
+                                     save_smiles_splits: False
+                                     seed: 1
+                                     separate_test_features_path: None
+                                     separate_test_path: None
+                                     separate_val_features_path: None
+                                     separate_val_path: None
+                                     show_individual_scores: False
+                                     split_sizes: [0.8, 0.1, 0.1]
+                                     split_type: scaffold_balanced
+                                     step: functional_prompt
+                                     temperature: 0.1
+                                     test: False
+                                     test_fold_index: None
+                                     transfer_learning: No
+                                     undirected: False
+                                     use_compound_names: False
+                                     use_input_features: None
+                                     val_fold_index: None
+                                     warmup_epochs: 2.0
+INFO - 07/03/24 14:02:13 - 0:00:00 - ========================
+                                     # Git Version: 6dce5de #
+                                     ========================
+INFO - 07/03/24 14:02:13 - 0:00:00 - The experiment will be stored in dumped/0703-finetune/finetune
+                                     
+INFO - 07/03/24 14:02:13 - 0:00:00 - Running command: python model_train.py --data_path './examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt'
+
+INFO - 07/03/24 14:02:13 - 0:00:00 - Run 0
+INFO - 07/03/24 14:02:13 - 0:00:00 - Loading data
+DEBUG - 07/03/24 14:02:26 - 0:00:13 - Warning: 10 SMILES are invalid.
+INFO - 07/03/24 14:02:26 - 0:00:13 - Number of tasks = 1
+DEBUG - 07/03/24 14:02:26 - 0:00:13 - Splitting data with seed 1
+DEBUG - 07/03/24 14:02:41 - 0:00:28 - Total scaffolds = 39,458 | train scaffolds = 31,458 | val scaffolds = 3,933 | test scaffolds = 4,067
+DEBUG - 07/03/24 14:02:42 - 0:00:29 - Label averages per scaffold, in decreasing order of scaffold frequency,capped at 10 scaffolds and 20 labels: [(array([1.+0.j]), array([2])), (array([0.+0.j]), array([2])), (array([1.+0.j]), array([40])), (array([1.+0.j]), array([1])), (array([1.+0.j]), array([1])), (array([1.+0.j]), array([3])), (array([0.+0.j]), array([3])), (array([0.+0.j]), array([1])), (array([0.+0.j]), array([2])), (array([0.+0.j]), array([1]))]
+DEBUG - 07/03/24 14:02:42 - 0:00:29 - Class sizes
+DEBUG - 07/03/24 14:02:42 - 0:00:29 - Class 0: 65.51%, 1: 34.49%
+DEBUG - 07/03/24 14:02:42 - 0:00:29 - Total size = 74,141 | train size = 59,312 | val size = 7,414 | test size = 7,415
+DEBUG - 07/03/24 14:02:42 - 0:00:29 - Loading model from ../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt
+DEBUG - 07/03/24 14:02:43 - 0:00:30 - MoleculeModel(
+                                        (sigmoid): Sigmoid()
+                                        (linear): Linear(in_features=489, out_features=300, bias=True)
+                                        (encoder): CMPN(
+                                          (encoder): CMPNEncoder(
+                                            (dropout_layer): Dropout(p=0.0, inplace=False)
+                                            (act_func): ReLU()
+                                            (W_i_atom): PromptGeneratorOutput(
+                                              (self_out): Linear(in_features=133, out_features=300, bias=False)
+                                              (prompt_generator): Prompt_generator(
+                                                (linear): Linear(in_features=133, out_features=300, bias=True)
+                                                (attention_layer_1): AttentionLayer(
+                                                  (w_q): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_k): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_v): Linear(in_features=133, out_features=32, bias=True)
+                                                  (dense): Linear(in_features=32, out_features=133, bias=True)
+                                                  (LayerNorm): LayerNorm((133,), eps=1e-06, elementwise_affine=True)
+                                                  (dropout): Dropout(p=0.1, inplace=False)
+                                                )
+                                                (attention_layer_2): AttentionLayer(
+                                                  (w_q): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_k): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_v): Linear(in_features=133, out_features=32, bias=True)
+                                                  (dense): Linear(in_features=32, out_features=133, bias=True)
+                                                  (LayerNorm): LayerNorm((133,), eps=1e-06, elementwise_affine=True)
+                                                  (dropout): Dropout(p=0.1, inplace=False)
+                                                )
+                                                (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                              )
+                                            )
+                                            (W_i_bond): Linear(in_features=147, out_features=300, bias=False)
+                                            (W_h_atom): Linear(in_features=447, out_features=300, bias=False)
+                                            (W_h_0): Linear(in_features=300, out_features=300, bias=False)
+                                            (W_h_1): Linear(in_features=300, out_features=300, bias=False)
+                                            (W_o): Linear(in_features=600, out_features=300, bias=True)
+                                            (gru): BatchGRU(
+                                              (gru): GRU(300, 300, batch_first=True, bidirectional=True)
+                                            )
+                                            (lr): Linear(in_features=900, out_features=300, bias=False)
+                                            (W_i_atom_new): Linear(in_features=266, out_features=300, bias=False)
+                                          )
+                                        )
+                                        (ffn): Sequential(
+                                          (0): Dropout(p=0.0, inplace=False)
+                                          (1): Linear(in_features=300, out_features=300, bias=True)
+                                          (2): ReLU()
+                                          (3): Dropout(p=0.0, inplace=False)
+                                          (4): Linear(in_features=300, out_features=300, bias=True)
+                                          (5): ReLU()
+                                          (6): Dropout(p=0.0, inplace=False)
+                                          (7): Linear(in_features=300, out_features=300, bias=True)
+                                          (8): ReLU()
+                                          (9): Dropout(p=0.0, inplace=False)
+                                          (10): Linear(in_features=300, out_features=300, bias=True)
+                                          (11): ReLU()
+                                          (12): Dropout(p=0.0, inplace=False)
+                                          (13): Linear(in_features=300, out_features=1, bias=True)
+                                        )
+                                      )
+DEBUG - 07/03/24 14:02:43 - 0:00:30 - Number of parameters = 2,596,706
+DEBUG - 07/03/24 14:02:43 - 0:00:30 - Moving model to cuda
+INFO - 07/03/24 14:02:43 - 0:00:30 - Epoch 0
+INFO - 07/03/24 14:24:40 - 0:00:00 - ============ Initialized logger ============
+INFO - 07/03/24 14:24:40 - 0:00:00 - activation: ReLU
+                                     atom_messages: False
+                                     batch_size: 256
+                                     bias: False
+                                     checkpoint_dir: None
+                                     checkpoint_path: ../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt
+                                     checkpoint_paths: ['../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt']
+                                     command: python model_train.py --data_path './examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt' --exp_id "finetune"
+                                     config_path: None
+                                     crossval_index_dir: None
+                                     crossval_index_file: None
+                                     cuda: True
+                                     data_path: ./examples/chaperone_sample_data.csv
+                                     dataset_type: classification
+                                     depth: 3
+                                     dropout: 0.0
+                                     dump_path: dumped
+                                     encoder_name: CMPNN
+                                     ensemble_size: 1
+                                     epochs: 40
+                                     exp_id: finetune
+                                     exp_name: finetune
+                                     features_generator: None
+                                     features_only: False
+                                     features_path: None
+                                     features_scaling: True
+                                     ffn_hidden_size: 300
+                                     ffn_num_layers: 5
+                                     final_lr: 0.0001
+                                     folds_file: None
+                                     gpu: 0
+                                     hidden_size: 300
+                                     init_lr: 0.0001
+                                     log_frequency: 10
+                                     max_data_size: None
+                                     max_lr: 0.001
+                                     metric: accuracy
+                                     minimize_score: False
+                                     multiclass_num_classes: 3
+                                     no_cache: False
+                                     num_lrs: 1
+                                     num_runs: 1
+                                     quiet: False
+                                     save_dir: ./ckpt
+                                     save_smiles_splits: False
+                                     seed: 1
+                                     separate_test_features_path: None
+                                     separate_test_path: None
+                                     separate_val_features_path: None
+                                     separate_val_path: None
+                                     show_individual_scores: False
+                                     split_sizes: [0.8, 0.1, 0.1]
+                                     split_type: scaffold_balanced
+                                     step: functional_prompt
+                                     temperature: 0.1
+                                     test: False
+                                     test_fold_index: None
+                                     transfer_learning: No
+                                     undirected: False
+                                     use_compound_names: False
+                                     use_input_features: None
+                                     val_fold_index: None
+                                     warmup_epochs: 2.0
+INFO - 07/03/24 14:24:40 - 0:00:00 - ========================
+                                     # Git Version: 6dce5de #
+                                     ========================
+INFO - 07/03/24 14:24:40 - 0:00:00 - The experiment will be stored in dumped/0703-finetune/finetune
+                                     
+INFO - 07/03/24 14:24:40 - 0:00:00 - Running command: python model_train.py --data_path './examples/chaperone_sample_data.csv' --metric accuracy --dataset_type classification --epochs 40 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --split_sizes '0.8' '0.1' '0.1' --exp_name finetune --exp_id finetune --checkpoint_path '../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt'
+
+INFO - 07/03/24 14:24:40 - 0:00:00 - Run 0
+INFO - 07/03/24 14:24:40 - 0:00:00 - Loading data
+DEBUG - 07/03/24 14:24:53 - 0:00:13 - Warning: 10 SMILES are invalid.
+INFO - 07/03/24 14:24:53 - 0:00:13 - Number of tasks = 1
+DEBUG - 07/03/24 14:24:53 - 0:00:13 - Splitting data with seed 1
+DEBUG - 07/03/24 14:25:08 - 0:00:28 - Total scaffolds = 39,458 | train scaffolds = 31,458 | val scaffolds = 3,933 | test scaffolds = 4,067
+DEBUG - 07/03/24 14:25:09 - 0:00:29 - Label averages per scaffold, in decreasing order of scaffold frequency,capped at 10 scaffolds and 20 labels: [(array([1.+0.j]), array([2])), (array([0.+0.j]), array([2])), (array([1.+0.j]), array([40])), (array([1.+0.j]), array([1])), (array([1.+0.j]), array([1])), (array([1.+0.j]), array([3])), (array([0.+0.j]), array([3])), (array([0.+0.j]), array([1])), (array([0.+0.j]), array([2])), (array([0.+0.j]), array([1]))]
+DEBUG - 07/03/24 14:25:09 - 0:00:29 - Class sizes
+DEBUG - 07/03/24 14:25:09 - 0:00:29 - Class 0: 65.51%, 1: 34.49%
+DEBUG - 07/03/24 14:25:09 - 0:00:29 - Total size = 74,141 | train size = 59,312 | val size = 7,414 | test size = 7,415
+DEBUG - 07/03/24 14:25:09 - 0:00:29 - Loading model from ../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt
+DEBUG - 07/03/24 14:25:10 - 0:00:29 - MoleculeModel(
+                                        (sigmoid): Sigmoid()
+                                        (linear): Linear(in_features=489, out_features=300, bias=True)
+                                        (encoder): CMPN(
+                                          (encoder): CMPNEncoder(
+                                            (dropout_layer): Dropout(p=0.0, inplace=False)
+                                            (act_func): ReLU()
+                                            (W_i_atom): PromptGeneratorOutput(
+                                              (self_out): Linear(in_features=133, out_features=300, bias=False)
+                                              (prompt_generator): Prompt_generator(
+                                                (linear): Linear(in_features=133, out_features=300, bias=True)
+                                                (attention_layer_1): AttentionLayer(
+                                                  (w_q): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_k): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_v): Linear(in_features=133, out_features=32, bias=True)
+                                                  (dense): Linear(in_features=32, out_features=133, bias=True)
+                                                  (LayerNorm): LayerNorm((133,), eps=1e-06, elementwise_affine=True)
+                                                  (dropout): Dropout(p=0.1, inplace=False)
+                                                )
+                                                (attention_layer_2): AttentionLayer(
+                                                  (w_q): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_k): Linear(in_features=133, out_features=32, bias=True)
+                                                  (w_v): Linear(in_features=133, out_features=32, bias=True)
+                                                  (dense): Linear(in_features=32, out_features=133, bias=True)
+                                                  (LayerNorm): LayerNorm((133,), eps=1e-06, elementwise_affine=True)
+                                                  (dropout): Dropout(p=0.1, inplace=False)
+                                                )
+                                                (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                              )
+                                            )
+                                            (W_i_bond): Linear(in_features=147, out_features=300, bias=False)
+                                            (W_h_atom): Linear(in_features=447, out_features=300, bias=False)
+                                            (W_h_0): Linear(in_features=300, out_features=300, bias=False)
+                                            (W_h_1): Linear(in_features=300, out_features=300, bias=False)
+                                            (W_o): Linear(in_features=600, out_features=300, bias=True)
+                                            (gru): BatchGRU(
+                                              (gru): GRU(300, 300, batch_first=True, bidirectional=True)
+                                            )
+                                            (lr): Linear(in_features=900, out_features=300, bias=False)
+                                            (W_i_atom_new): Linear(in_features=266, out_features=300, bias=False)
+                                          )
+                                        )
+                                        (ffn): Sequential(
+                                          (0): Dropout(p=0.0, inplace=False)
+                                          (1): Linear(in_features=300, out_features=300, bias=True)
+                                          (2): ReLU()
+                                          (3): Dropout(p=0.0, inplace=False)
+                                          (4): Linear(in_features=300, out_features=300, bias=True)
+                                          (5): ReLU()
+                                          (6): Dropout(p=0.0, inplace=False)
+                                          (7): Linear(in_features=300, out_features=300, bias=True)
+                                          (8): ReLU()
+                                          (9): Dropout(p=0.0, inplace=False)
+                                          (10): Linear(in_features=300, out_features=300, bias=True)
+                                          (11): ReLU()
+                                          (12): Dropout(p=0.0, inplace=False)
+                                          (13): Linear(in_features=300, out_features=1, bias=True)
+                                        )
+                                      )
+DEBUG - 07/03/24 14:25:10 - 0:00:29 - Number of parameters = 2,596,706
+DEBUG - 07/03/24 14:25:10 - 0:00:29 - Moving model to cuda
+INFO - 07/03/24 14:25:10 - 0:00:30 - Epoch 0
