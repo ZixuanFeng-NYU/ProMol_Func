@@ -1,6 +1,5 @@
 # ProMol_Func: Protein functions talk to small Molecules functional groups
-
-![ProMol_Func](https://github.com/ZixuanFeng-NYU/ProMol_Func/assets/76710319/f9e747f9-69ce-4107-bfc8-8437ee48cd2c)
+![ProMol_Func](https://github.com/ZixuanFeng-NYU/ProMol_Func/assets/76710319/f243e500-8885-481c-bf78-c542ef041e84)
 
 ProMol_Func bridges small molecules graph encoder model KANO and structure-based protein functions prediction model DeepFRI for protein-ligand binders classification/regression tasks. By default, the saved three models under "" is used. This is the same sets of models which were used to evluate general model performance on DUD-E,LIT-PCBA, DEKOIS2.0, and CASF-2016. Results can be found in paper
 
