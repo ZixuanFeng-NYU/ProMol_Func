@@ -35,3 +35,7 @@ cd ../KANO
 mkdir Target_specific_model
 python model_train.py  --data_path ./examples/chaperone_sample_data.csv    --metric 'accuracy'        --dataset_type classification --epochs 40    --gpu 0    --batch_size 256    --ensemble_size 1    --num_runs 1  --seed 1  --init_lr 1e-4    --split_type 'scaffold_balanced'         --step 'functional_prompt'    --ffn_num_layers 5  --split_sizes 0.8 0.1 0.1  --exp_name finetune      --exp_id finetune         --checkpoint_path "../saved_models/0610data_5FFN_3models/ProMol_func_general_0610data_5FFN_1/run_0/model_0/model.pt"
 ```
+### Acknowledgements
+Thanks for the following released code bases:
+[KANO](https://github.com/HICAI-ZJU/KANO), DeepFRI, RDKit, pdb2fasta
+
