@@ -37,5 +37,5 @@ python model_train.py  --data_path ./examples/chaperone_sample_data.csv    --met
 ```
 ### Acknowledgements
 Thanks for the following released code bases:
-[KANO](https://github.com/HICAI-ZJU/KANO), DeepFRI, RDKit, pdb2fasta
+[KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
 
