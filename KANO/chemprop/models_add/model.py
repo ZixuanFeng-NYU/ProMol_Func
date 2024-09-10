@@ -144,24 +144,6 @@ def build_model(args: Namespace, encoder_name) -> nn.Module:
     return model
 
 
-def build_pretrain_model(args: Namespace, encoder_name) -> nn.Module:
-    """
-    Builds a MoleculeModel, which is a message passing neural network + feed-forward layers.
-
-    :param args: Arguments.
-    :return: A MoleculeModel containing the MPN encoder along with final linear layers with parameters initialized.
-    """
-    args.ffn_hidden_size = args.hidden_size//2
-    args.output_size = args.hidden_size
-
-    model = MoleculeModel(classification=args.dataset_type == 'classification', multiclass=args.dataset_type == 'multiclass', pretrain=True)
-    model.create_encoder(args, encoder_name)
-    model.create_ffn(args)
-    
-    initialize_weights(model)
-
-    return model
-
 
 
 def attention(query, key, value, mask, dropout=None):
