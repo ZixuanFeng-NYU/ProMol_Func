@@ -34,7 +34,7 @@ ESM2_cos_sim_matrix_normalized = scaler.fit_transform(ESM2_cos_sim_matrix)
 # Normalize DeepFRI_cos_sim_matrix
 DeepFRI_cos_sim_matrix_normalized = scaler.fit_transform(DeepFRI_cos_sim_matrix)
 print(np.shape(ESM2_cos_sim_matrix_normalized))
-
+plt.figure(figsize=(8, 6))
 plt.hist(ESM2_cos_sim_matrix_normalized[ESM2_cos_sim_matrix_normalized != 1],bins=100,alpha=0.4,density=True,log=False,color='blue',label='ESM2')
 plt.hist(DeepFRI_cos_sim_matrix_normalized[DeepFRI_cos_sim_matrix_normalized != 1],bins=100,alpha=0.4,density=True,log=False,color='red',label='DeepFRI')
 plt.xlabel("cosine similarity")
