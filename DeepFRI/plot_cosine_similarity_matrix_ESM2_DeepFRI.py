@@ -35,44 +35,12 @@ ESM2_cos_sim_matrix_normalized = scaler.fit_transform(ESM2_cos_sim_matrix)
 DeepFRI_cos_sim_matrix_normalized = scaler.fit_transform(DeepFRI_cos_sim_matrix)
 print(np.shape(ESM2_cos_sim_matrix_normalized))
 
-#Plotting ESM2_cos_sim_matrix
-plt.figure(figsize=(8, 6))
-plt.imshow(ESM2_cos_sim_matrix_normalized, cmap='viridis', interpolation='nearest')
-plt.title('ESM2 Cosine Similarity Matrix')
-plt.colorbar()
-plt.savefig('ESM2_cos_sim_matrix.png')  # Save the figure as PNG
+plt.hist(ESM2_cos_sim_matrix_normalized[ESM2_cos_sim_matrix_normalized != 1],bins=100,alpha=0.4,density=True,log=False,color='blue',label='ESM2')
+plt.hist(DeepFRI_cos_sim_matrix_normalized[DeepFRI_cos_sim_matrix_normalized != 1],bins=100,alpha=0.4,density=True,log=False,color='red',label='DeepFRI')
+plt.xlabel("cosine similarity")
+plt.ylabel("Count")
+plt.legend()
+plt.savefig("cosine similarity distribution",dpi=800)
 plt.show()
 
-# Plotting DeepFRI_cos_sim_matrix
-plt.figure(figsize=(8, 6))
-plt.imshow(DeepFRI_cos_sim_matrix_normalized, cmap='viridis', interpolation='nearest')
-plt.title('DeepFRI Cosine Similarity Matrix')
-plt.colorbar()
-plt.savefig('DeepFRI_cos_sim_matrix.png')  # Save the figure as PNG
-plt.show()
 
-# Reorder ESM2_cos_sim_matrix_normalized
-ESM2_reordered_indices = np.argsort(-np.sum(ESM2_cos_sim_matrix_normalized, axis=1))
-ESM2_cos_sim_matrix_reordered = ESM2_cos_sim_matrix_normalized[ESM2_reordered_indices]
-ESM2_cos_sim_matrix_reordered = ESM2_cos_sim_matrix_reordered[:, ESM2_reordered_indices]
-
-# Reorder DeepFRI_cos_sim_matrix_normalized
-DeepFRI_reordered_indices = np.argsort(-np.sum(DeepFRI_cos_sim_matrix_normalized, axis=1))
-DeepFRI_cos_sim_matrix_reordered = DeepFRI_cos_sim_matrix_normalized[DeepFRI_reordered_indices]
-DeepFRI_cos_sim_matrix_reordered = DeepFRI_cos_sim_matrix_reordered[:, DeepFRI_reordered_indices]
-
-# Plotting reordered ESM2_cos_sim_matrix
-plt.figure(figsize=(8, 6))
-plt.imshow(ESM2_cos_sim_matrix_reordered, cmap='viridis', interpolation='nearest')
-plt.title('Reordered ESM2 Cosine Similarity Matrix')
-plt.colorbar()
-plt.savefig('Reordered_ESM2_cos_sim_matrix.png')  # Save the figure as PNG
-plt.show()
-
-# Plotting reordered DeepFRI_cos_sim_matrix
-plt.figure(figsize=(8, 6))
-plt.imshow(DeepFRI_cos_sim_matrix_reordered, cmap='viridis', interpolation='nearest')
-plt.title('Reordered DeepFRI Cosine Similarity Matrix')
-plt.colorbar()
-plt.savefig('Reordered_DeepFRI_cos_sim_matrix.png')  # Save the figure as PNG
-plt.show()
