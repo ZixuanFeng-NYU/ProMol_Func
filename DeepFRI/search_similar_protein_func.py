@@ -19,9 +19,8 @@ def load_protein_functions(pro_func_list, directory):
         except Exception as e:
             print("Error loading {}: {}".format(file_path, e))
     return pro_func_dict
-
 def search_similar_protein_functions(target_pro_id, directory):
-    similari_protein_list = []
+    similari_protein_list,similarity_list = [],[]
     pro_func_list = os.listdir(directory)
 
     # Load all protein functions
@@ -44,13 +43,15 @@ def search_similar_protein_functions(target_pro_id, directory):
         if pro_id != target_pro_id:
             similarity_matrix = cosine_similarity(pro_func_target, pro_func)
             similarity = similarity_matrix[0][0]
-            if round(similarity, 2) >= 0.85:
+            if round(similarity, 2) >= 0.80:
                 print("{} has similar pro_func with {}".format(pro_id, target_pro_id))
                 similari_protein_list.append(pro_id)
+                similarity_list.append(similarity)
 
     # Save similar proteins to CSV
     print("similari_protein_list",similari_protein_list)
     df = pd.DataFrame(similari_protein_list, columns=['Protein_ID'])
+    df['similarity']=similarity_list
     df.to_csv(f"{target_pro_id}_similar_protein.csv", index=False)
 
 if __name__ == '__main__':
