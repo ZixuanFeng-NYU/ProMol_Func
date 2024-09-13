@@ -74,27 +74,35 @@ def get_emb(model: nn.Module,
     for i in range(0, num_iters, iter_step):
         # Prepare batch
         mol_batch = MoleculeDataset(data[i:i + batch_size])
-        smiles_batch, features_batch = mol_batch.smiles(), mol_batch.features()
+        smiles_batch, features_batch, target_batch,pro_id_batch = mol_batch.smiles(), mol_batch.features(), mol_batch.targets(),mol_batch.pro_id()
 
         # Run model
         batch = smiles_batch
 
         step = 'pretrain'
         with torch.no_grad():
-            batch_embs = model.encoder(step, prompt, batch, features_batch)
+            batch_embs = model.encoder(step, prompt, smiles_batch, pro_id_batch, features_batch)
 
-        batch_embs = batch_embs.data.cpu().numpy()
+        print("batch_embs:",batch_embs)
+        tensor1, tensor2 = batch_embs
+        tensor1_np = tensor1.cpu().numpy()
+        tensor2_np = tensor2.cpu().numpy()
+        print("tensor1_np:",tensor1_np)
+        #batch_embs = batch_embs.cpu().numpy()
+        #print("batch_embs:",batch_embs)
 
         # Inverse scale if regression
         if scaler is not None:
             batch_embs = scaler.inverse_transform(batch_embs)
-        
+
         # Collect vectors
         # batch_embs = batch_embs.tolist()
         # embs.extend(batch_embs)
         if i == 0:
-            embs = batch_embs
+            embs = tensor1_np
         else:
-            embs = np.vstack((embs, batch_embs)) 
+            embs = np.vstack((embs, tensor1_np))
+            print("embs after stack:",embs)
 
     return embs
+
