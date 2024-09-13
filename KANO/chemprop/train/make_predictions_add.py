@@ -131,12 +131,13 @@ def get_embs(args: Namespace, smiles: List[str] = None) -> List[Optional[List[fl
         print(f'Predicting with an ensemble of {len(args.checkpoint_paths)} models')
         for checkpoint_path in tqdm(args.checkpoint_paths, total=len(args.checkpoint_paths)):
             # Load model
-            # model = load_checkpoint(checkpoint_path, cuda=args.cuda)
-            model = build_pretrain_model(args, encoder_name=args.encoder_name)
-            model.encoder.load_state_dict(torch.load(checkpoint_path))
-            
+            model = load_checkpoint(checkpoint_path, cuda=args.cuda)
+            print(model)
+            # model = build_pretrain_model(args, encoder_name=args.encoder_name)
+            #model.encoder.load_state_dict(torch.load(checkpoint_path))
+
             model = model.cuda()
-            
+
             model_preds = get_emb(
                 model=model,
                 prompt=False,
@@ -156,4 +157,5 @@ def get_embs(args: Namespace, smiles: List[str] = None) -> List[Optional[List[fl
             scaler=None
         )
 
-    return model_preds, test_data.smiles()
+    return model_preds, test_data.smiles(),test_data.pro_id(),test_data.targets()
+
