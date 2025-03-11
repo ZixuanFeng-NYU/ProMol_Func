@@ -1,6 +1,5 @@
 # ProMol_Func: Protein functions talk to small Molecules functional groups
-
-[ProMol_Func__general.pdf](https://github.com/user-attachments/files/19197139/ProMol_Func__general.pdf)
+<img width="2286" alt="Overview_of_ProMol_Func-2" src="https://github.com/user-attachments/assets/8a72d6ef-4f14-42f9-93bd-d26fc6193ef6" />
 
 
 
