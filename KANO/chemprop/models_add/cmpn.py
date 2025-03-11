@@ -277,12 +277,12 @@ class CMPN(nn.Module):
 
     def forward(self, step, prompt: bool, smiles_batch, pro_id_batch,
                 features_batch: List[np.ndarray] = None) -> torch.FloatTensor:
-        print("smiles_batch:",smiles_batch)
-        print("pro_id_batch:",pro_id_batch)
+        #print("smiles_batch:",smiles_batch)
+        #print("pro_id_batch:",pro_id_batch)
         if not self.graph_input:
             batch = mol2graph(smiles_batch, self.args, prompt)
         small_molecules_output = self.encoder.forward(step, batch, features_batch)
-        print("small_molecules_output:",small_molecules_output)
+        #print("small_molecules_output:",small_molecules_output)
         #a_scope=self.encoder.forward(step, batch, features_batch)[1]
         #print("a_scope:",a_scope)
         pro_functions_list = []
@@ -292,10 +292,10 @@ class CMPN(nn.Module):
                     pro_func_data=json.load(file)['Y_hat'][0]
                     pro_functions_list.append(pro_func_data)
         pro_functions_tensor=torch.tensor(pro_functions_list)
-        print("pro_functions_tensor shape:",pro_functions_tensor.shape)
+        #print("pro_functions_tensor shape:",pro_functions_tensor.shape)
 
         pro_functions_tensor = pro_functions_tensor.to(small_molecules_output.device)
-        print("pro_functions_tensor:",pro_functions_tensor)
-        print("pro_functions_tensor shape:",pro_functions_tensor.shape)
+        #print("pro_functions_tensor:",pro_functions_tensor)
+        #print("pro_functions_tensor shape:",pro_functions_tensor.shape)
 
         return small_molecules_output,pro_functions_tensor
