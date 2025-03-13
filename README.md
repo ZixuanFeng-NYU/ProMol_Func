@@ -15,10 +15,11 @@ git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
 ### Protein Functions Prediction
 A pro_sequence.csv file needs to be prepared with one column ['pro_id'] and one column ['Sequence']. DeepFRI Pretrained models can be downloaded from:
-https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI).
+https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI). (DeepFRI needs a separate conda env with python3.7)
 ```
 cd DeepFRI
 mkdir DeepFRI_outputs
+conda activate deepfri_env
 python predict_protein_functions.py sample_protein.csv
 ```
 ### General model Prediction
@@ -26,8 +27,23 @@ python predict_protein_functions.py sample_protein.csv
 cd KANO
 mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
+### Reproduction of evaluation results
+```
+### Reproduction of evaluation results
+download and decompress LIT-PCBA.zip from https://zenodo.org/uploads/15015132 and put it under general_model_evaluate_dataset
+```
+cd general_model_evaluate_dataset
+python LIT-PCBA_data_process.py
+cd ../DeepFRI
+conda activate deepfri_env 
+python predict_protein_functions.py lit-pcba-protein.csv
+cd ../KANO
+
 
 ```
+
+### Retrain General model
+ProMol_Func_general_model_data_06102024_add_decoys.csv from https://zenodo.org/uploads/15015132
 ### Acknowledgements
 Thanks for the following released code bases:
 [KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
