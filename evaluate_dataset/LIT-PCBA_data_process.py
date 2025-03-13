@@ -156,7 +156,12 @@ data = pd.DataFrame({
 # Save DataFrame to CSV
 output_csv_path = "LIT-PCBA_protein_ligand_data.csv"
 data.to_csv(output_csv_path, index=False)
+if not os.path.exists("LIT_PCBA_EF"):
+    os.makedirs("LIT_PCBA_EF")
 
+if not os.path.exists("LIT_PCBA_EF/data_per_target"):
+    os.makedirs("LIT_PCBA_EF/data_per_target")
 for item in set(data['Target_Name']):
     df_item=data[data['Target_Name']==item]
     df_item.to_csv(f"LIT_PCBA_EF/data_per_target/{item}_protein_ligands.csv",index=False)
+                                                                                             
