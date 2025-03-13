@@ -39,7 +39,8 @@ python predict_protein_functions.py lit-pcba-protein.csv
 cd ../KANO
 conda deactivate
 python model_prediction.py --gpu 0 --test_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target/ADRB2_protein_ligands.csv --preds_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target --checkpoint_dir ../saved_models/0610data_5FFN_3models/
-
+###After done with other targets
+python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
