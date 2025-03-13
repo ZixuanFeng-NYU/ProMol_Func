@@ -27,7 +27,6 @@ python predict_protein_functions.py sample_protein.csv
 cd KANO
 mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
-### Reproduction of evaluation results
 ```
 ### Reproduction of evaluation results
 download and decompress LIT-PCBA.zip from https://zenodo.org/uploads/15015132 and put it under evaluate_dataset
