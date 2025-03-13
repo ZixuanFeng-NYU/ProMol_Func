@@ -30,16 +30,16 @@ python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_
 ### Reproduction of evaluation results
 ```
 ### Reproduction of evaluation results
-download and decompress LIT-PCBA.zip from https://zenodo.org/uploads/15015132 and put it under general_model_evaluate_dataset
+download and decompress LIT-PCBA.zip from https://zenodo.org/uploads/15015132 and put it under evaluate_dataset
 ```
-cd general_model_evaluate_dataset
+cd evaluate_dataset
 python LIT-PCBA_data_process.py
 cd ../DeepFRI
 conda activate deepfri_env 
 python predict_protein_functions.py lit-pcba-protein.csv
 cd ../KANO
 conda deactivate
-python model_prediction.py --gpu 0 --test_path ../general_model_evaluate_dataset/LIT_PCBA_EF/data_per_target/ADRB2_protein_ligands.csv --preds_path ../general_model_evaluate_dataset/LIT_PCBA_EF/data_per_target --checkpoint_dir ../saved_models/0610data_5FFN_3models/
+python model_prediction.py --gpu 0 --test_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target/ADRB2_protein_ligands.csv --preds_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 
 ```
 
