@@ -40,6 +40,6 @@ for file in listfile:
 if results:
     df_results = pd.DataFrame(results)
     df_results.insert(0, "Target", Targets)  # Add 'Target' as a column instead of index
-    df_results.to_csv("LIT_PCBA_EF/enrichment_factors.csv", index=False)
+    df_results.to_csv("LIT_PCBA_EF/LIT_PCBA_EF_per_target.csv", index=False)
     print("Enrichment factors saved to 'LIT_PCBA_EF/LIT_PCBA_EF_per_target.csv'")
 ~                                                                             
