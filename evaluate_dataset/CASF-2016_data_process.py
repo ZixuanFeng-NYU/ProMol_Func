@@ -1,9 +1,34 @@
 ## convert ligands mol2 to smiles
 import os
+import pandas as pd
+from rdkit import Chem
+#pdb_id_list=os.listdir("CASF-2016/coreset")
+#for pdb_id in pdb_id_list:
+#    os.system(f"obabel -imol2 CASF-2016/coreset/{pdb_id}/{pdb_id}_ligand.mol2 -osmi -O CASF-2016/coreset/{pdb_id}/{pdb_id}_ligand.smi")
+#from rdkit import Chem
+from rdkit.Chem import MolFromMol2File, MolToSmiles
 
-pdb_id_list=os.listdir("CASF-2016/coreset")
-for pdb_id in pdb_id_list:
-    os.system(f"obabel -imol2 CASF-2016/coreset/{pdb_id}/{pdb_id}_ligand.mol2 -osmi -O CASF-2016/coreset/{pdb_id}/{pdb_id}_ligand.smi")
+# Directory containing the PDB ID subfolders
+core_set_dir = "CASF-2016/coreset"
+
+# Iterate through PDB IDs in the directory
+for pdb_id in os.listdir(core_set_dir):
+    mol2_path = os.path.join(core_set_dir, pdb_id, f"{pdb_id}_ligand.mol2")
+    smi_path = os.path.join(core_set_dir, pdb_id, f"{pdb_id}_ligand.smi")
+
+    if os.path.exists(mol2_path):
+        try:
+            mol = MolFromMol2File(mol2_path, sanitize=True, removeHs=False)  # Set `sanitize=False` if needed
+            if mol:
+                smiles = MolToSmiles(mol)
+                with open(smi_path, "w") as f:
+                    f.write(smiles + "\n")
+                print(f"Converted {mol2_path} to SMILES: {smiles}")
+            else:
+                print(f"Failed to read {mol2_path}")
+        except Exception as e:
+            print(f"Error processing {mol2_path}: {e}")
+
 
 ## convert pdb to fasta file
 import os
