@@ -136,9 +136,8 @@ casf=data.set_index("#code")
 
 smiles=casf[['SMILES']]
 common=common.join(smiles)
-print(common)
+
 common_T2=common.dropna(subset=['T2'])
-print(common_T2)
 common_T2['T1']=common_T2['T2']
 common_add_cross_binders=pd.concat([common,common_T2])
 common_add_cross_binders = common_add_cross_binders.drop(columns=['T2'])
@@ -149,16 +148,16 @@ common_add_cross_binders=common_add_cross_binders.rename(columns={'T1':'#code'})
 sequence=casf[['Sequence']]
 common_add_cross_binders=common_add_cross_binders.set_index("#code")
 final_data=common_add_cross_binders.join(sequence)
-print(final_data)
+
 print(len(set(final_data['Sequence'])))
 
 align_target=CoreSet.set_index("#code")[['target']]
 final_data=final_data.join(align_target)
-print(final_data)
+
 
 smiles_count = final_data.groupby('target')['SMILES'].nunique().reset_index()
 smiles_count = smiles_count.rename(columns={'SMILES': 'num_actives'})
-print(smiles_count)
+
 
 smiles_count['num_decoys'] = 285 - smiles_count['num_actives']  # Compute decoys
 
