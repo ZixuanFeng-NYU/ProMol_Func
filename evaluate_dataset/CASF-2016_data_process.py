@@ -192,8 +192,12 @@ for _, row in actives_per_target.iterrows():
 
 # Create DataFrame
 final_df = pd.DataFrame(final_smiles_list, columns=['SMILES', 'Class', 'pro_id', 'Sequence'])
+
+pro_id=[]
+for i in final_df['pro_id']:
+    pro_id.append('CASF2016_'+str(i))
+final_df['pro_id']=pro_id
+final_df=final_df[['SMILES', 'Class', 'pro_id', 'Sequence']]
 print(final_df)
-
 final_df.to_csv("CASF-2016_organized_data.csv",index=False)
-
 
