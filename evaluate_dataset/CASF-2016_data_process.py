@@ -119,3 +119,82 @@ data = pd.DataFrame({
 
 # Save DataFrame to CSV
 data.to_csv("CASF-2016_protein_ligand_data.csv", index=False)
+# Load CoreSet with correct delimiter
+CoreSet = pd.read_csv("CASF-2016/power_screening/CoreSet.dat", sep='\s+')
+print(CoreSet)  # Check if data is loaded correctly
+
+# Load LigandInfo with correct delimiter
+LigandInfo = pd.read_csv("CASF-2016/power_screening/LigandInfo.dat",sep='\s+')
+print(LigandInfo)
+LigandInfo=LigandInfo[['#code','T1','T2']]
+left=CoreSet.set_index("#code")
+right=LigandInfo.set_index("#code")
+common=left.join(right)
+print(common)
+
+casf=data.set_index("#code")
+
+smiles=casf[['SMILES']]
+common=common.join(smiles)
+print(common)
+common_T2=common.dropna(subset=['T2'])
+print(common_T2)
+common_T2['T1']=common_T2['T2']
+common_add_cross_binders=pd.concat([common,common_T2])
+common_add_cross_binders = common_add_cross_binders.drop(columns=['T2'])
+print(common_add_cross_binders)
+common_add_cross_binders=common_add_cross_binders.reset_index()
+common_add_cross_binders=common_add_cross_binders[['T1','SMILES']]
+common_add_cross_binders=common_add_cross_binders.rename(columns={'T1':'#code'})
+sequence=casf[['Sequence']]
+common_add_cross_binders=common_add_cross_binders.set_index("#code")
+final_data=common_add_cross_binders.join(sequence)
+print(final_data)
+print(len(set(final_data['Sequence'])))
+
+align_target=CoreSet.set_index("#code")[['target']]
+final_data=final_data.join(align_target)
+print(final_data)
+
+smiles_count = final_data.groupby('target')['SMILES'].nunique().reset_index()
+smiles_count = smiles_count.rename(columns={'SMILES': 'num_actives'})
+print(smiles_count)
+
+smiles_count['num_decoys'] = 285 - smiles_count['num_actives']  # Compute decoys
+
+print(smiles_count)
+smiles_count.to_csv("CASF-2016_count_actives_decoys_per_target.csv",index=False)
+# Get unique list of all SMILES
+all_smiles = set(final_data['SMILES'].unique())
+
+# Count number of actives per target (pro_id)
+actives_per_target = final_data.groupby('target')['SMILES'].unique().reset_index()
+actives_per_target = actives_per_target.rename(columns={'SMILES': 'actives'})
+print(actives_per_target)
+
+# Generate the dataset with actives and decoys
+final_smiles_list = []
+
+for _, row in actives_per_target.iterrows():
+    target = row['target']
+    sequence = final_data[final_data['target'] == target]['Sequence'].iloc[0]  # Get protein sequence
+    actives = set(row['actives'])  # Active SMILES for this target
+
+    # Decoys are all SMILES that are **not** in actives
+    decoys = all_smiles - actives
+
+    # Append actives with Class = 1
+    for smi in actives:
+        final_smiles_list.append([smi, 1, target, sequence])
+
+    # Append decoys with Class = 0
+    for smi in decoys:
+        final_smiles_list.append([smi, 0, target, sequence])
+
+# Create DataFrame
+final_df = pd.DataFrame(final_smiles_list, columns=['SMILES', 'Class', 'pro_id', 'Sequence'])
+print(final_df)
+
+final_df.to_csv("CASF-2016_organized_data.csv",index=False)
+
+
