@@ -1,5 +1,6 @@
 ## convert small molecule sdf to smiles
 import os
+import pandas as pd
 
 target_list=os.listdir("DUD-E/all")
 for target in target_list:
@@ -8,24 +9,33 @@ for target in target_list:
         if file_.endswith(".gz"):
             os.system(f"gzip -d DUD-E/all/{target}/{file_}")
 
-for target in target_list:
-    files=os.listdir("DUD-E/all/"+target)
-    for file_ in files:
-        if file_.endswith(".sdf"):
-            file_name=file_.split(".")[0]
-            os.system(f"obabel -isdf DUD-E/all/{target}/{file_name}.sdf -osmi -O DUD-E/all/{target}/{file_name}.smi")
+from rdkit import Chem
+import requests
 
+target_list = os.listdir("DUD-E/all")
 
-
-## convert protein pdb to fasta
 import subprocess
-
 input_dir = "DUD-E/DUD-E_targets_pdb"
-output_dir = "DUD-E/DUD-E_targets_pdb"
 
 # Ensure the output directory exists
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+if not os.path.exists(input_dir):
+    os.makedirs(input_dir)
+
+df_DUDE=pd.read_csv("DUDE_targets_pdb_code.csv")
+
+def download_pdb(pdb_id, save_dir="."):
+    url = f"https://files.rcsb.org/download/{pdb_id}.pdb"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        file_path = f"{save_dir}/{pdb_id}.pdb"
+        with open(file_path, "w") as f:
+            f.write(response.text)
+        print(f"PDB file saved: {file_path}")
+    else:
+        print(f"Error: PDB ID {pdb_id} not found.")
+for id_ in df_DUDE['PDB code']:
+    download_pdb(id_,input_dir)
 
 # Get the list of protein directories
 list_of_protein = os.listdir(input_dir)
@@ -34,7 +44,7 @@ list_of_protein = os.listdir(input_dir)
 for target in list_of_protein:
     pdb_id=target.split(".")[0]
     pdb_file = os.path.join(input_dir, pdb_id+".pdb")
-    output_fasta = os.path.join(output_dir, pdb_id+".fasta")
+    output_fasta = os.path.join(input_dir, pdb_id+".fasta")
 
     # Check if the PDB file exists
     if os.path.exists(pdb_file):
@@ -49,7 +59,6 @@ for target in list_of_protein:
             print(f"Error occurred while processing {pdb_file}: {e}")
     else:
         print(f"PDB file not found: {pdb_file}")
-
 ## save longest chain
 
 # Directory containing the FASTA files
@@ -72,7 +81,6 @@ for file_ in list_of_fasta:
         current_sequence = []
         longest_header = None
         longest_sequence = ""
-
         for line in lines:
             if line.startswith('>'):
                 # Save the previous sequence if it was longer than the current longest
@@ -100,7 +108,6 @@ for file_ in list_of_fasta:
 
         # Print the result
         print(f"Processed {file_}: longest sequence length {len(longest_sequence)}")
-
 ## prepare protein ligand csv
 
 # Load the DataFrame and fill NaN values
@@ -114,7 +121,6 @@ PDB_id, Sequence, SMILES, Target_Name, Class = [], [], [], [],[]
 # Get the list of FASTA files
 fasta_directory = "DUD-E/DUD-E_targets_pdb/"
 file_list = os.listdir(fasta_directory)
-
 # Process each FASTA file
 for file_ in file_list:
     if file_.endswith(".fasta"):
@@ -128,7 +134,6 @@ for file_ in file_list:
         with open(fasta_path, "r") as f:
             lines = f.readlines()
             seq = ''.join(line.strip() for line in lines if not line.startswith(">"))
-
         # Read SMILES strings from corresponding ligand file
         ligand_file = os.path.join("DUD-E", "all",f"{target_name}", "actives_final.ism")
         print(ligand_file)
@@ -143,7 +148,6 @@ for file_ in file_list:
                 SMILES.append(smi)
                 Target_Name.append(target_name)
                 Class.append(1)
-
         decoys_file=os.path.join("DUD-E","all",f"{target_name}","decoys_final.ism")
         print(decoys_file)
         with open(decoys_file,"r") as file_3:
@@ -158,7 +162,6 @@ for file_ in file_list:
                 Target_Name.append(target_name)
                 Class.append(0)
 
-
 # Create a DataFrame
 data = pd.DataFrame({
     "smiles": SMILES,
@@ -171,9 +174,3 @@ print("all data:",data)
 # Save DataFrame to CSV
 output_csv_path = "DUDE_protein_ligand_data.csv"
 data.to_csv(output_csv_path, index=False)
-
-for item in set(data['Target_Name']):
-    print("item:",item)
-    df_item=data[data['Target_Name']==item]
-    print("df_item",df_item)
-    df_item.to_csv(f"DUDE_EF/data_per_target/{item}_protein_ligands.csv",index=False)
