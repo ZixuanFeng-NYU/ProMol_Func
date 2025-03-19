@@ -174,3 +174,9 @@ print("all data:",data)
 # Save DataFrame to CSV
 output_csv_path = "DUDE_protein_ligand_data.csv"
 data.to_csv(output_csv_path, index=False)
+for target in data["Target_Name"].unique():
+    target_data = data[data["Target_Name"] == target]
+    target_csv_path = os.path.join(output_directory, f"{target}_data.csv")
+    target_data.to_csv(target_csv_path, index=False)
+    print(f"Saved {target_csv_path}")
+
