@@ -60,6 +60,6 @@ if __name__ == '__main__':
         sys.exit(1)
 
     target_pro_id = sys.argv[1]
-    directory = "/vast/zf2012/05-13-2024_ProMol_Func_general_model/DeepFRI/DeepFRI_outputs"
+    directory = "DeepFRI_outputs"
     search_similar_protein_functions(target_pro_id, directory)
 
