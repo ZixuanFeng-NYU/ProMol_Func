@@ -62,4 +62,15 @@ if __name__ == '__main__':
     target_pro_id = sys.argv[1]
     directory = "DeepFRI_outputs"
     search_similar_protein_functions(target_pro_id, directory)
+    df_similar=pd.read_csv(f"{target_pro_id}_MF_pred_scores.json_similar_protein.csv")
+    simlar_protein_funcs=[]
+    for id_ in df_similar['Protein_ID']:
+        simlar_protein_funcs.append(id_.split("_")[0])
+    print("simlar_protein_funcs id:",simlar_protein_funcs)
+    df_general=pd.read_csv("../KANO/data/ProMol_Func_general_model_data_06102024_add_decoys_0331version.csv")
+    df_general['pro_id']=df_general['pro_id'].astype(str)
+    df_similar_found=df_general[df_general['pro_id'].isin(simlar_protein_funcs)]
+    print(df_similar_found)
+    df_similar_found.to_csv(f"{target_pro_id}_similar_protein_data.csv", index=False)
+
 
