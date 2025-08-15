@@ -1,4 +1,5 @@
-# ProMol_Func: Protein functions talk to small Molecules functional groups
+# ProMol_Func: A Structure-Free Deep Learning Model for Virtual Screening 
+
 <img width="1738" height="936" alt="Overview-2" src="https://github.com/user-attachments/assets/79f432f7-cf06-44c3-932b-3a9bdfef5549" />
 
 ProMol_Func bridges small molecules graph encoder model KANO and sequence-based protein functions prediction model DeepFRI for protein-ligand binding probability prediction task. By default, the saved three models under "saved_models/0610data_5FFN_3models" is used. This is the same sets of models which were used to evluate general model performance on DUD-E,LIT-PCBA, DEKOIS2.0. Results can be found in paper
