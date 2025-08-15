@@ -26,7 +26,7 @@ mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 ```
 ### Reproduction of evaluation results
-download and decompress LIT-PCBA.zip from https://zenodo.org/uploads/15015132 and put it under evaluate_dataset
+download and decompress LIT-PCBA.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset
 ```
 cd evaluate_dataset
 python LIT-PCBA_data_process.py
@@ -41,7 +41,7 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-ProMol_Func_general_model_data_06102024_add_decoys.csv is given in [https://zenodo.org/uploads/15015132](https://doi.org/10.5281/zenodo.16825387)
+ProMol_Func_general_model_data_06102024_add_decoys.csv is given in [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387)
 ### Acknowledgements
 Thanks for the following released code bases:
 [KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
