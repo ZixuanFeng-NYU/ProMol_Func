@@ -41,7 +41,7 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-ProMol_Func_general_model_data_06102024_add_decoys.csv is given in https://zenodo.org/uploads/15015132
+ProMol_Func_general_model_data_06102024_add_decoys.csv is given in [https://zenodo.org/uploads/15015132](https://doi.org/10.5281/zenodo.16825387)
 ### Acknowledgements
 Thanks for the following released code bases:
 [KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
