@@ -26,7 +26,7 @@ mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 ```
 ### Reproduction of evaluation results
-download and decompress LIT-PCBA_EF.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset
+download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset
 ```
 cd evaluate_dataset
 python LIT-PCBA_data_process.py
