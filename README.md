@@ -31,7 +31,7 @@ download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.168
 cd evaluate_dataset
 python LIT-PCBA_data_process.py
 cd ../DeepFRI
-conda activate deepfri_env 
+conda activate deepfri
 python predict_protein_functions.py lit-pcba-protein.csv
 cd ../KANO
 conda deactivate
