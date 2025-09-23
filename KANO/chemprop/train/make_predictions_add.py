@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 from .predict_with_add import predict, get_emb
 from chemprop.data_with_pro import MoleculeDataset
-from chemprop.models_add import build_model, build_pretrain_model
+from chemprop.models_add import build_model
 from chemprop.data_with_pro.utils import get_data, get_data_from_smiles
 from chemprop.utils import load_args, load_checkpoint, load_scalers
 import pdb
