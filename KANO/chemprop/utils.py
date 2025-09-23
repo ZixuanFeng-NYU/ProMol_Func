@@ -12,7 +12,7 @@ from torch.optim import Adam, Optimizer
 from torch.optim.lr_scheduler import _LRScheduler
 
 from chemprop.data_with_pro import StandardScaler
-from chemprop.models_add import build_model, MoleculeModel, build_pretrain_model, add_functional_prompt
+from chemprop.models_add import build_model, MoleculeModel, add_functional_prompt
 from chemprop.nn_utils import NoamLR
 
 
