@@ -16,7 +16,7 @@ from .predict_with_add import predict
 from .train_with_add import train
 from chemprop.data_with_pro import StandardScaler
 from chemprop.data_with_pro.utils import get_class_sizes, get_data, get_task_names, split_data
-from chemprop.models_add import build_model, build_pretrain_model, add_functional_prompt
+from chemprop.models_add import build_model, add_functional_prompt
 from chemprop.nn_utils import param_count
 from chemprop.utils import build_optimizer, build_lr_scheduler, get_loss_func, get_metric_func, load_checkpoint,\
     makedirs, save_checkpoint
