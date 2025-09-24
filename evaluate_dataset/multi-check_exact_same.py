@@ -69,7 +69,7 @@ def _process_one_target(tpath_str: str):
             df_dup[["smiles", "Sequence"]].to_csv(dup_path, index=False)
 
         # Always write the dataset with duplicates removed
-        no_dup_path = _G_OUT_DIR / f"{target_name}_no_duplicates.csv"
+        no_dup_path = _G_OUT_DIR / f"{target_name}_no_duplicates_protein_ligands.csv"
         # Keep only the original two columns in the output
         keep_cols = [c for c in ["smiles", "Sequence"] if c in df_no_dup.columns]
         df_no_dup[keep_cols].to_csv(no_dup_path, index=False)
