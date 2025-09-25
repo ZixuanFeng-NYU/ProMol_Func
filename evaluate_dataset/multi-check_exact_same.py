@@ -8,13 +8,12 @@ from multiprocessing import Pool, cpu_count
 # --- Config ---
 GENERAL_TRAIN_CSV = "../general_model_training_data/ProMol_Func_general_model_data_06102024_add_decoys.csv"
 TARGET_DIR = "LIT_PCBA_EF/data_per_target"
-NO_DUP_DIR = "LIT_PCBA_EF/data_per_target_no_duplicates"
 N_PROCESSES = int(os.environ.get("N_PROCESSES", cpu_count()))
 
 # --- Globals populated in workers via initializer ---
 _G_GENERAL_EXACT_PAIRS = None
 _G_TARGET_DIR = None
-_G_OUT_DIR = None
+
 
 # --- Helpers ---
 def canonicalize_smiles(smi: str):
@@ -32,8 +31,8 @@ def _init_worker(general_exact_pairs, target_dir, out_dir):
     global _G_GENERAL_EXACT_PAIRS, _G_TARGET_DIR, _G_OUT_DIR
     _G_GENERAL_EXACT_PAIRS = general_exact_pairs
     _G_TARGET_DIR = Path(target_dir)
-    _G_OUT_DIR = Path(out_dir)
-    _G_OUT_DIR.mkdir(parents=True, exist_ok=True)
+  
+  
 
 def _process_one_target(tpath_str: str):
     """
@@ -68,13 +67,8 @@ def _process_one_target(tpath_str: str):
             dup_path = _G_TARGET_DIR / f"{target_name}_duplicate.csv"
             df_dup[["smiles", "Sequence"]].to_csv(dup_path, index=False)
 
-        # Always write the dataset with duplicates removed
-        no_dup_path = _G_OUT_DIR / f"{target_name}_no_duplicates_protein_ligands.csv"
-        # Keep only the original two columns in the output
-        keep_cols = [c for c in ["smiles", "Sequence"] if c in df_no_dup.columns]
-        df_no_dup[keep_cols].to_csv(no_dup_path, index=False)
-
-        return (target_name, len(df_dup), str(dup_path) if dup_path else None, str(no_dup_path), None)
+        
+        return (target_name, len(df_dup), str(dup_path) if dup_path else None)
 
     except Exception as e:
         return (Path(tpath_str).stem, 0, None, None, str(e))
