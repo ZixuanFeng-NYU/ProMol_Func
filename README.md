@@ -10,13 +10,15 @@ We will set up the environment using Anaconda. Clone the current repo
 ```
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
+### Set up environment 
+We provide a pre-configured Python environment through the overlay file overlay-15GB-500K.ext3, which is available at https://doi.org/10.5281/zenodo.16825387. Alternatively, users may set up their own environment according to their specific requirements.
 ### Protein Functions Prediction
 A pro_sequence.csv file needs to be prepared with one column ['pro_id'] and one column ['Sequence']. DeepFRI Pretrained models can be downloaded from:
 https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI). (DeepFRI needs a separate conda env with python3.7)
 ```
 cd DeepFRI
 mkdir DeepFRI_outputs
-conda activate deepfri_env
+conda activate deepfri
 python predict_protein_functions.py sample_protein.csv
 ```
 ### General model Prediction
