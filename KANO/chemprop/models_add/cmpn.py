@@ -138,7 +138,7 @@ class CMPNEncoder(nn.Module):
         
         atom_hiddens = self.act_func(self.W_o(agg_message))  # num_atoms x hidden
         atom_hiddens = self.dropout_layer(atom_hiddens)  # num_atoms x hidden
-        print("atom_hiddens from CMPN shape:",atom_hiddens.shape)
+        #print("atom_hiddens from CMPN shape:",atom_hiddens.shape)
         # Readout
         mol_vecs = []
         for i, (a_start, a_size) in enumerate(a_scope):
@@ -149,7 +149,7 @@ class CMPNEncoder(nn.Module):
             
         
         mol_vecs = torch.stack(mol_vecs, dim=0)
-        print("mol_vecs shape:",mol_vecs.shape)
+        #print("mol_vecs shape:",mol_vecs.shape)
         return mol_vecs  # B x H
 
 
