@@ -44,7 +44,16 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-ProMol_Func_general_model_data_06102024_add_decoys.csv is given in [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387)
+Proteins used for training the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at https://doi.org/10.5281/zenodo.16825387) and first require functional score prediction. These predicted functions are then used together with the compound data in ProMol_Func_general_model_data_06102024_add_decoys.csv from the same repository to train the general model. The general ProMol_Func model was initialized from a pretrained KANO checkpoint, specifically the graph encoder located at KANO/dumped/pretrained_graph_encoder. Three ensemble models were trained using different random split seeds (1, 2, and 3).
+```
+cd DeepFRI
+conda activate deepfri
+python predict_protein_functions.py general_model_protein_sequence.csv
+cd ../KANO
+conda deactivate
+python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './dumped/pretrained_graph_encoder/original_CMPN_0623_1350_14000th_epoch.pkl' --exp_id "ProMol_func_general_0610data_5FFN_1"
+```
+
 ### Acknowledgements
 Thanks for the following released code bases:
 [KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
