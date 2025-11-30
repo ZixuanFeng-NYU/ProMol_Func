@@ -11,20 +11,23 @@ Clone the current repo
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
 ### Set up environment 
-Users need to install dependency packages
+Users need to install dependency packages (python 3.7)
 ```
-python          3.7
-torch           1.13.1
-rdkit           2018.09.3
-numpy           1.20.3
-gensim          4.2.0
-nltk            3.4.5
-owl2vec-star    0.2.1
-Owlready2       0.37
-torch-scatter   2.0.9
-tensorflow-gpu  2.3.1
-Biopython       1.76
-scikit-learn    0.23.1
+pip3 install torch torchvision
+pip install rdkit
+pip install numpy==1.20.3
+pip install gensim==4.2.0
+pip install nltk==3.4.5
+conda install -c conda-forge "owlready2>=0.25,<0.26" 
+pip install Owlready2==0.37  
+pip install torch-scatter==2.0.9 -f https://data.pyg.org/whl/torch-1.13.1+cu117.html
+pip install tensorflow-gpu==2.3.1
+pip install biopython==1.76
+pip install scikit-learn==0.23.1
+pip install pandas
+pip install tqdm
+pip install tensorboardX
+pip install Unidecode
 ```
 
 ### Protein Functions Prediction
@@ -35,7 +38,6 @@ cd DeepFRI
 python predict_protein_functions.py sample_protein.csv
 ```
 ### General model Prediction
-# If you are currently in the deepfri environment, run: conda deactivate
 ```
 cd KANO
 mkdir general_model_prediciton
