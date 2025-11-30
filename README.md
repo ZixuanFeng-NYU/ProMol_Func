@@ -11,14 +11,27 @@ We will set up the environment using Anaconda. Clone the current repo
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
 ### Set up environment 
-We provide a pre-configured Python environment through the overlay file overlay-15GB-500K.ext3, which is available at https://doi.org/10.5281/zenodo.16825387. Alternatively, users may set up their own environment according to their specific requirements.
+Users need to install dependency packages
+```
+python          3.7
+torch           1.13.1
+rdkit           2018.09.3
+numpy           1.20.3
+gensim          4.2.0
+nltk            3.4.5
+owl2vec-star    0.2.1
+Owlready2       0.37
+torch-scatter   2.0.9
+tensorflow-gpu  2.3.1
+Biopython       1.76
+scikit-learn    0.23.1
+```
 
 ### Protein Functions Prediction
 A pro_sequence.csv file needs to be prepared with one column ['pro_id'] and one column ['Sequence']. DeepFRI Pretrained models can be downloaded from:
-https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI). (DeepFRI needs a separate conda env with python3.7)
+https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI). 
 ```
 cd DeepFRI
-conda activate deepfri
 python predict_protein_functions.py sample_protein.csv
 ```
 ### General model Prediction
@@ -34,10 +47,8 @@ download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.168
 cd evaluate_dataset
 python LIT-PCBA_data_process.py
 cd ../DeepFRI
-conda activate deepfri
 python predict_protein_functions.py lit-pcba-protein.csv
 cd ../KANO
-conda deactivate
 python model_prediction.py --gpu 0 --test_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target/ADRB2_protein_ligands.csv --preds_path ../evaluate_dataset/LIT_PCBA_EF/data_per_target --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 ###After done with other targets
 python LIT_PCBA_EF.py
@@ -47,10 +58,8 @@ python LIT_PCBA_EF.py
 Proteins used for training the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at https://doi.org/10.5281/zenodo.16825387) and first require functional score prediction. These predicted functions are then used together with the compound data in ProMol_Func_general_model_data_06102024_add_decoys.csv from the same repository to train the general model. The general ProMol_Func model was initialized from a pretrained KANO checkpoint, specifically the graph encoder located at KANO/dumped/pretrained_graph_encoder. Three ensemble models were trained using different random split seeds (1, 2, and 3).
 ```
 cd DeepFRI
-conda activate deepfri
 python predict_protein_functions.py general_model_protein_sequence.csv
 cd ../KANO
-conda deactivate
 python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './dumped/pretrained_graph_encoder/original_CMPN_0623_1350_14000th_epoch.pkl' --exp_id "ProMol_func_general_0610data_5FFN_1"
 ```
 
