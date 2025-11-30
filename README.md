@@ -6,7 +6,7 @@ ProMol_Func bridges small molecules graph encoder model KANO and sequence-based 
 
 ## Usage
 ### Install
-We will set up the environment using Anaconda. Clone the current repo
+Clone the current repo
 ```
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
