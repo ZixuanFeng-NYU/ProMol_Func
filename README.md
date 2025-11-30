@@ -57,7 +57,7 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-Proteins used for training the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at https://doi.org/10.5281/zenodo.16825387) and first require functional score prediction. These predicted functions are then used together with the compound data in ProMol_Func_general_model_data_06102024_add_decoys.csv from the same repository to train the general model. The general ProMol_Func model was initialized from the pretrained KANO checkpoint. Three ensemble models were trained using different random split seeds (1, 2, and 3).
+Proteins used for training the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at https://doi.org/10.5281/zenodo.16825387) and first require functional score prediction. These predicted functions are then used together with the compound data in ProMol_Func_general_model_data_06102024_add_decoys.csv from the same repository to train the general model. The general ProMol_Func model was initialized from a KANO pretrained checkpoint. Three ensemble models were trained using different random split seeds (1, 2, and 3).
 ```
 cd DeepFRI
 python predict_protein_functions.py general_model_protein_sequence.csv
