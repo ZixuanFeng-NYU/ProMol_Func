@@ -60,7 +60,7 @@ def train(model: nn.Module,
         #print("batch[0]:",batch[0])
         #print("batch[1]:",batch[1])
         mask = torch.Tensor([[x is not None for x in tb] for tb in target_batch])
-        print("mask:",mask)
+        #print("mask:",mask)
         targets = torch.Tensor([[0 if x is None else x for x in tb] for tb in target_batch])
 
         if next(model.parameters()).is_cuda:
@@ -76,18 +76,18 @@ def train(model: nn.Module,
         model.zero_grad()
         #preds = model(step, prompt, smiles_batch,pro_id_batch, features_batch)
         preds = model(step, prompt, smiles_batch, pro_id_batch, features_batch)
-        print("preds:",preds)
-        print("preds.shape:",preds.shape)
+        #print("preds:",preds)
+        #print("preds.shape:",preds.shape)
         
 
-        print("targets:",targets)
+        #print("targets:",targets)
         if args.dataset_type == 'multiclass':
             targets = targets.long()
             loss = torch.cat([loss_func(preds[:, target_index, :], targets[:, target_index]).unsqueeze(1) for target_index in range(preds.size(1))], dim=1) * class_weights * mask
         else:
             loss = loss_func(preds, targets) * class_weights * mask
         loss = loss.sum() / mask.sum()
-        print("trainig loss:",loss)
+        #print("trainig loss:",loss)
         
         loss_sum += loss.item()
         iter_count += len(mol_batch)
