@@ -77,7 +77,7 @@ def make_predictions(args: Namespace, smiles: List[str] = None) -> List[Optional
             batch_size=args.batch_size,
             scaler=scaler
         )
-        print("model_preds:",model_preds)
+        #print("model_preds:",model_preds)
         #model_preds = get_emb(
         #    model=model,
         #    prompt=False,
@@ -90,7 +90,7 @@ def make_predictions(args: Namespace, smiles: List[str] = None) -> List[Optional
     # Ensemble predictions
     avg_preds = (sum_preds / args.ensemble_size).tolist()
     print("ensemble size:",args.ensemble_size)
-    print("ensemble_prediction:",avg_preds)
+    #print("ensemble_prediction:",avg_preds)
     # avg_preds = avg_preds.tolist()
     # return avg_preds, test_data.smiles()
     return avg_preds, test_data.smiles(), test_data.pro_id(),test_data.targets()
