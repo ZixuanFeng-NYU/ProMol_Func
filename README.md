@@ -62,7 +62,7 @@ Proteins used for training the general ProMol_Func model are provided in general
 cd DeepFRI
 python predict_protein_functions.py general_model_protein_sequence.csv
 cd ../KANO
-python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './dumped/pretrained_graph_encoder/original_CMPN_0623_1350_14000th_epoch.pkl' --exp_id "ProMol_func_general_0610data_5FFN_1"
+python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './dumped/pretrained_graph_encoder/original_CMPN_0623_1350_14000th_epoch.pkl'
 ```
 
 ### Acknowledgements
