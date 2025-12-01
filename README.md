@@ -98,7 +98,7 @@ After this step, the file ProMol_Func_general_model_data_06102024_add_decoys.csv
 3. Train the general ProMol_Func model
 ProMol_Func_general_model_data_06102024_add_decoys.csv, is used as inputs to train the general model.
 Initialize the model from the pretrained KANO checkpoint.
-Train three ensemble models using different random split seeds (1, 2, and 3). Users may adjust the ensemble size according to their needs.
+Train three ensemble models using different random split seeds (1, 2, and 3). Users may adjust the hyperparameters such as ensemble_size, batch_size and metric, according to their needs.
 ```
 cd KANO
 python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './original_CMPN_0623_1350_14000th_epoch.pkl'
