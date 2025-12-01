@@ -37,7 +37,13 @@ https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz 
 cd DeepFRI
 python predict_protein_functions.py sample_protein.csv
 ```
+This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func inference process.
+
 ### General model Prediction
+A protein_ligand.csv file must be prepared containing the following columns: smiles, Class, and pro_id.
+  smiles: lists the SMILES strings of the compounds.
+  Class: specifies the known binding class (e.g., active/inactive). This column may be left empty for real-world screening scenarios where binding labels are not available.
+  pro_id: specifies the protein identifier and is used to retrieve the corresponding protein functional scores.
 ```
 cd KANO
 mkdir general_model_prediciton
