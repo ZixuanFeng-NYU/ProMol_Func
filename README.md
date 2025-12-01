@@ -57,7 +57,24 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-Proteins used for training the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at https://doi.org/10.5281/zenodo.16825387) and first require functional score prediction. These predicted functions are then used together with the compound data in ProMol_Func_general_model_data_06102024_add_decoys.csv from the same repository to train the general model. The general ProMol_Func model was initialized from a KANO pretrained checkpoint. Three ensemble models were trained using different random split seeds (1, 2, and 3).
+Proteins used to train the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at the Zenodo repository: https://doi.org/10.5281/zenodo.16825387). Functional scores are first predicted for these protein sequences, and the resulting function embeddings are then combined with compound data from ProMol_Func_general_model_data_06102024_add_decoys.csv (from the same repository) to train the general model. The general ProMol_Func model is initialized from a pretrained KANO checkpoint, and three ensemble models are trained using different random split seeds (1, 2, and 3).
+Step-by-step setup
+1. Download protein sequence file from the Zenodo repository (https://doi.org/10.5281/zenodo.16825387), download
+general_model_protein_sequence.csv.
+Place this file in the folder: ProMol_Func/DeepFRI/
+2. Download training data file
+From the same Zenodo repository, download ProMol_Func_general_model_data_06102024_add_decoys.csv.zip.
+Place this file in the folder: ProMol_Func/KANO/
+In the ProMol_Func/KANO directory, unzip the file:
+'''
+gunzip ProMol_Func_general_model_data_06102024_add_decoys.csv.zip
+'''
+After this step, the file ProMol_Func_general_model_data_06102024_add_decoys.csv should be present in ProMol_Func/KANO/.
+3. Train the general ProMol_Func model
+Use the functional scores predicted from general_model_protein_sequence.csv together with
+ProMol_Func_general_model_data_06102024_add_decoys.csv as input to train the general model.
+Initialize the model from the pretrained KANO checkpoint.
+Train three ensemble models by using different random split seeds (1, 2, and 3).
 ```
 cd DeepFRI
 python predict_protein_functions.py general_model_protein_sequence.csv
