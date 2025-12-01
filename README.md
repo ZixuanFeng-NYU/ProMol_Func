@@ -67,7 +67,8 @@ cd DeepFRI
 python predict_protein_functions.py general_model_protein_sequence.csv
 ```
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func model training process.
-3. Download training data file
+
+2. Download training data file
 From the same Zenodo repository, download ProMol_Func_general_model_data_06102024_add_decoys.csv.zip.
 Place this file in the folder: ProMol_Func/KANO/
 In the ProMol_Func/KANO directory, unzip the file:
@@ -75,7 +76,8 @@ In the ProMol_Func/KANO directory, unzip the file:
 gunzip ProMol_Func_general_model_data_06102024_add_decoys.csv.zip
 ```
 After this step, the file ProMol_Func_general_model_data_06102024_add_decoys.csv should be present in ProMol_Func/KANO/.
-4. Train the general ProMol_Func model
+
+3. Train the general ProMol_Func model
 ProMol_Func_general_model_data_06102024_add_decoys.csv, is used as inputs to train the general model.
 Initialize the model from the pretrained KANO checkpoint.
 Train three ensemble models using different random split seeds (1, 2, and 3). Users may adjust the ensemble size according to their needs.
