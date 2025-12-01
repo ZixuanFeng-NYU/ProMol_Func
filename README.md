@@ -47,8 +47,11 @@ This will produce output files of the form {pro_id}_MF_pred_scores.json under: P
 
 ### General model Prediction
 A protein_ligand.csv (we use sample_data.csv as an example here) file must be prepared containing the following columns: smiles, Class, and pro_id.
+
   smiles: lists the SMILES strings of the compounds.
+  
   Class: specifies the known binding class (e.g., active/inactive). This column may be left empty for real-world screening scenarios where binding labels are not available.
+  
   pro_id: specifies the protein identifier and is used to retrieve the corresponding protein functional scores.
 ProMol_Func requires a GPU to run efficiently.
 ```
