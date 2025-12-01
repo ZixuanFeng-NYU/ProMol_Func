@@ -31,8 +31,14 @@ pip install Unidecode
 ```
 
 ### Protein Functions Prediction
-A pro_sequence.csv file needs to be prepared with one column ['pro_id'] and one column ['Sequence']. DeepFRI Pretrained models can be downloaded from:
-https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz (run DeepFRI on GPU). Uncompress tar.gz file into the DeepFRI directory (tar xvzf trained_models.tar.gz -C /path/to/DeepFRI). 
+A protein sequence file, pro_sequence.csv (e.g., sample_protein.csv), must be prepared with two columns: pro_id and Sequence.
+DeepFRI pretrained models can be downloaded from:
+https://users.flatironinstitute.org/~renfrew/DeepFRI_data/trained_models.tar.gz
+(DeepFRI requires a GPU to run efficiently.)
+After downloading, extract the pretrained models into the DeepFRI directory: 
+```
+tar xvzf trained_models.tar.gz -C /path/to/DeepFRI
+```
 ```
 cd DeepFRI
 python predict_protein_functions.py sample_protein.csv
@@ -40,17 +46,19 @@ python predict_protein_functions.py sample_protein.csv
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func inference process.
 
 ### General model Prediction
-A protein_ligand.csv file must be prepared containing the following columns: smiles, Class, and pro_id.
+A protein_ligand.csv (we use sample_data.csv as an example here) file must be prepared containing the following columns: smiles, Class, and pro_id.
   smiles: lists the SMILES strings of the compounds.
   Class: specifies the known binding class (e.g., active/inactive). This column may be left empty for real-world screening scenarios where binding labels are not available.
   pro_id: specifies the protein identifier and is used to retrieve the corresponding protein functional scores.
+ProMol_Func requires a GPU to run efficiently.
 ```
 cd KANO
 mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 ```
 ### Reproduction of evaluation results
-download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset
+download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset.
+ProMol_Func requires a GPU to run efficiently.
 ```
 cd evaluate_dataset
 python LIT-PCBA_data_process.py
@@ -64,6 +72,7 @@ python LIT_PCBA_EF.py
 
 ### Retrain General model
 Proteins used to train the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at the Zenodo repository: https://doi.org/10.5281/zenodo.16825387). Protein molecular functional scores are first predicted for these protein sequences, and the resulting function embeddings are then combined with compound data from ProMol_Func_general_model_data_06102024_add_decoys.csv (from the same repository) to train the general model. The general ProMol_Func model is initialized from a pretrained KANO checkpoint, and three ensemble models are trained using different random split seeds (1, 2, and 3).
+ProMol_Func requires a GPU to run efficiently.
 
 Step-by-step setup
 1. Protein functional score prediction. Download general_model_protein_sequence.csv, which contains the protein sequences used for training the model, from the Zenodo repository (https://doi.org/10.5281/zenodo.16825387).
