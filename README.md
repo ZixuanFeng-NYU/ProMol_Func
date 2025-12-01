@@ -66,11 +66,11 @@ Place this file in the folder: ProMol_Func/DeepFRI/
 From the same Zenodo repository, download ProMol_Func_general_model_data_06102024_add_decoys.csv.zip.
 Place this file in the folder: ProMol_Func/KANO/
 In the ProMol_Func/KANO directory, unzip the file:
-'''
+```
 gunzip ProMol_Func_general_model_data_06102024_add_decoys.csv.zip
-'''
+```
 After this step, the file ProMol_Func_general_model_data_06102024_add_decoys.csv should be present in ProMol_Func/KANO/.
-3. Train the general ProMol_Func model
+4. Train the general ProMol_Func model
 Use the functional scores predicted from general_model_protein_sequence.csv together with
 ProMol_Func_general_model_data_06102024_add_decoys.csv as input to train the general model.
 Initialize the model from the pretrained KANO checkpoint.
