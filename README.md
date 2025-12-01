@@ -57,13 +57,17 @@ python LIT_PCBA_EF.py
 ```
 
 ### Retrain General model
-Proteins used to train the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at the Zenodo repository: https://doi.org/10.5281/zenodo.16825387). Functional scores are first predicted for these protein sequences, and the resulting function embeddings are then combined with compound data from ProMol_Func_general_model_data_06102024_add_decoys.csv (from the same repository) to train the general model. The general ProMol_Func model is initialized from a pretrained KANO checkpoint, and three ensemble models are trained using different random split seeds (1, 2, and 3).
+Proteins used to train the general ProMol_Func model are provided in general_model_protein_sequence.csv (available at the Zenodo repository: https://doi.org/10.5281/zenodo.16825387). Protein molecular functional scores are first predicted for these protein sequences, and the resulting function embeddings are then combined with compound data from ProMol_Func_general_model_data_06102024_add_decoys.csv (from the same repository) to train the general model. The general ProMol_Func model is initialized from a pretrained KANO checkpoint, and three ensemble models are trained using different random split seeds (1, 2, and 3).
 
 Step-by-step setup
-1. Download protein sequence file from the Zenodo repository (https://doi.org/10.5281/zenodo.16825387), download
-general_model_protein_sequence.csv.
+1. Protein functional score prediction. Download general_model_protein_sequence.csv, which contains the protein sequences used for training the model, from the Zenodo repository (https://doi.org/10.5281/zenodo.16825387).
 Place this file in the folder: ProMol_Func/DeepFRI/
-2. Download training data file
+```
+cd DeepFRI
+python predict_protein_functions.py general_model_protein_sequence.csv
+```
+This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func model training process.
+3. Download training data file
 From the same Zenodo repository, download ProMol_Func_general_model_data_06102024_add_decoys.csv.zip.
 Place this file in the folder: ProMol_Func/KANO/
 In the ProMol_Func/KANO directory, unzip the file:
@@ -72,14 +76,11 @@ gunzip ProMol_Func_general_model_data_06102024_add_decoys.csv.zip
 ```
 After this step, the file ProMol_Func_general_model_data_06102024_add_decoys.csv should be present in ProMol_Func/KANO/.
 4. Train the general ProMol_Func model
-Use the functional scores predicted from general_model_protein_sequence.csv together with
-ProMol_Func_general_model_data_06102024_add_decoys.csv as input to train the general model.
+ProMol_Func_general_model_data_06102024_add_decoys.csv, is used as inputs to train the general model.
 Initialize the model from the pretrained KANO checkpoint.
-Train three ensemble models by using different random split seeds (1, 2, and 3).
+Train three ensemble models using different random split seeds (1, 2, and 3). Users may adjust the ensemble size according to their needs.
 ```
-cd DeepFRI
-python predict_protein_functions.py general_model_protein_sequence.csv
-cd ../KANO
+cd KANO
 python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_06102024_add_decoys.csv' --metric accuracy --dataset_type classification --epochs 10 --gpu 0 --batch_size 256 --ensemble_size 1 --num_runs 1 --seed 1 --init_lr '1e-4' --split_type scaffold_balanced --step functional_prompt --ffn_num_layers 5 --exp_name ProMol_func_general_0610data_5FFN_1 --exp_id ProMol_func_general_0610data_5FFN_1 --checkpoint_path './original_CMPN_0623_1350_14000th_epoch.pkl'
 ```
 
