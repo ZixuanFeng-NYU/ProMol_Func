@@ -59,6 +59,7 @@ cd KANO
 mkdir general_model_prediciton
 python model_prediction.py --gpu 0 --test_path examples/sample_data.csv --preds_path general_model_prediction  --checkpoint_dir ../saved_models/0610data_5FFN_3models/
 ```
+After model prediction, a new column named 'preds' will be generated, containing the predicted protein–small-molecule binding probabilities.
 ### Reproduction of evaluation results
 download and decompress LIT_PCBA_EF.zip from [https://doi.org/10.5281/zenodo.16825387](https://doi.org/10.5281/zenodo.16825387) and put it under evaluate_dataset.
 ProMol_Func requires a GPU to run efficiently.
