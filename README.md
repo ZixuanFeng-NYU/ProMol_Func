@@ -46,7 +46,7 @@ python predict_protein_functions.py sample_protein.csv
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func inference process.
 
 ### General model Prediction
-A protein_ligand.csv (we use sample_data.csv as an example here) file must be prepared containing the following columns: 'smiles', 'Class', and 'pro_id'.
+Prepare a protein_ligand.csv file (e.g., sample_data.csv) that includes three required columns: 'smiles', 'Class', and 'pro_id'.
 
   'smiles': lists the SMILES strings of the compounds.
   
