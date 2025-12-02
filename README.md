@@ -127,5 +127,5 @@ python model_train.py --gpu 0 --data_path './ProMol_Func_general_model_data_0610
 
 ### Acknowledgements
 Thanks for the following released code bases:
-[KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [RDKit](https://github.com/rdkit/rdkit), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
+[KANO](https://github.com/HICAI-ZJU/KANO), [DeepFRI](https://github.com/flatironinstitute/DeepFRI), [pdb2fasta](https://github.com/alexholehouse/pdb2fasta)
 
