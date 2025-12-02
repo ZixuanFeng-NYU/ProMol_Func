@@ -59,7 +59,7 @@ tar xvzf trained_models.tar.gz -C /path/to/DeepFRI
 conda activate deepfri
 cd DeepFRI
 python predict_protein_functions.py sample_protein.csv
-
+conda deactivate
 ```
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func inference process.
 
@@ -100,8 +100,10 @@ Step-by-step setup
 1. Protein functional score prediction. Download general_model_protein_sequence.csv, which contains the protein sequences used for training the model, from the Zenodo repository (https://doi.org/10.5281/zenodo.16825387).
 Place this file in the folder: ProMol_Func/DeepFRI/
 ```
+conda activate deepfri
 cd DeepFRI
 python predict_protein_functions.py general_model_protein_sequence.csv
+conda deactivate
 ```
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func model training process.
 
