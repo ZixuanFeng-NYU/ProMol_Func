@@ -23,8 +23,8 @@ conda create -n ProMol_Func python=3.7 -y
 conda activate ProMol_Func
 
 # 2. Core dependencies
-pip install torch torchvision          # Adjust versions if needed for your CUDA
-pip install rdkit                      # Or: conda install -c conda-forge rdkit
+pip install torch torchvision          
+pip install rdkit                   
 pip install numpy==1.20.3
 pip install gensim==4.2.0
 pip install nltk==3.4.5
