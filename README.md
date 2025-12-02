@@ -13,7 +13,7 @@ git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ### Set up environment 
 We provide a ready-to-use overlay environment via Zenodo (https://doi.org/10.5281/zenodo.16825387
 ).
-Please note that DeepFRI dependencies are installed in a dedicated environment; users should run conda activate deepfri when performing protein-function prediction.
+Please note that DeepFRI dependencies are installed in a dedicated environment; users should activate deepfri env when performing protein-function prediction.
 
 Alternatively, users may create their own environments and install all required dependencies (Python 3.7 and associated packages).
 For best practice, we strongly recommend installing DeepFRI in a separate conda environment to avoid conflicts and ensure reproducibility.
