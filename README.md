@@ -11,7 +11,7 @@ Clone the current repo
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
 ### Set up environment 
-We provide a ready-to-use overlay environment via Zenodo (https://doi.org/10.5281/zenodo.16825387
+We provide a ready-to-use overlay environment overlay-15GB-500K.ext3 via Zenodo (https://doi.org/10.5281/zenodo.16825387
 ).
 Please note that DeepFRI dependencies are installed in a dedicated environment; users should activate deepfri env when performing protein-function prediction.
 
