@@ -43,7 +43,7 @@ conda activate deepfri
 pip install tensorflow-gpu==2.3.1
 pip install biopython==1.76
 pip install scikit-learn==0.23.1
-
+pip install pandas
 ```
 
 ### Protein Functions Prediction
