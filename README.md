@@ -11,23 +11,39 @@ Clone the current repo
 git clone https://github.com/ZixuanFeng-NYU/ProMol_Func.git
 ```
 ### Set up environment 
-Users need to install dependency packages (python 3.7)
+We provide a ready-to-use overlay environment via Zenodo (https://doi.org/10.5281/zenodo.16825387
+).
+Please note that DeepFRI dependencies are installed in a dedicated environment; users should run conda activate deepfri when performing protein-function prediction.
+
+Alternatively, users may create their own environments and install all required dependencies (Python 3.7 and associated packages).
+For best practice, we strongly recommend installing DeepFRI in a separate conda environment to avoid conflicts and ensure reproducibility.
 ```
-pip3 install torch torchvision
-pip install rdkit
+# 1. Create and activate a fresh conda environment (recommended)
+conda create -n ProMol_Func python=3.7 -y
+conda activate ProMol_Func
+
+# 2. Core dependencies
+pip install torch torchvision          # Adjust versions if needed for your CUDA
+pip install rdkit                      # Or: conda install -c conda-forge rdkit
 pip install numpy==1.20.3
 pip install gensim==4.2.0
 pip install nltk==3.4.5
-conda install -c conda-forge "owlready2>=0.25,<0.26" 
-pip install Owlready2==0.37  
+pip install Owlready2==0.37
 pip install torch-scatter==2.0.9 -f https://data.pyg.org/whl/torch-1.13.1+cu117.html
-pip install tensorflow-gpu==2.3.1
-pip install biopython==1.76
-pip install scikit-learn==0.23.1
 pip install pandas
 pip install tqdm
 pip install tensorboardX
 pip install Unidecode
+
+# 3. Create and activate the DeepFRI environment
+conda create -n deepfri python=3.7 -y
+conda activate deepfri
+
+# 4. DeepFRI requirements
+pip install tensorflow-gpu==2.3.1
+pip install biopython==1.76
+pip install scikit-learn==0.23.1
+
 ```
 
 ### Protein Functions Prediction
@@ -40,8 +56,10 @@ After downloading, extract the pretrained models into the DeepFRI directory:
 tar xvzf trained_models.tar.gz -C /path/to/DeepFRI
 ```
 ```
+conda activate deepfri
 cd DeepFRI
 python predict_protein_functions.py sample_protein.csv
+
 ```
 This will produce output files of the form {pro_id}_MF_pred_scores.json under: ProMol_Func/DeepFRI/DeepFRI_outputs. These JSON files are then automatically read during the ProMol_Func inference process.
 
