@@ -34,6 +34,7 @@ pip install pandas
 pip install tqdm
 pip install tensorboardX
 pip install Unidecode
+pip install scikit-learn
 
 # 3. Create and activate the DeepFRI environment
 conda create -n deepfri python=3.7 -y
